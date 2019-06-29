@@ -149,7 +149,7 @@ class sequencer:
     
     def start(self, selection, patterns):
        if selection not in patterns:
-           pat = query_pattern(selection)
+           pat = self.query_pattern(self.selection)
            if pat:
                patterns[selection] = pattern(pat['name'], pat['stepCount'], pat['beatsPerMinute'], pat['tracks'])
     
@@ -200,7 +200,7 @@ class sequencer:
     def toggle_playing(self):
         self.playing = not self.playing
 
-    def query_pattern(name):
+    def query_pattern(self, name):
         info_url = "https://api.noopschallenge.com/drumbot/patterns/"
         info = requests.get(info_url + name).json()
     
